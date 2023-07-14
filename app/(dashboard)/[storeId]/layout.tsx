@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar";
+import { Sidebar } from "@/components/sidebar";
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
@@ -28,9 +28,13 @@ export default async function DashboardLayout({
     }
 
     return (
-        <>
-            <Navbar />
-            {children}
-        </>
+        <div className="bg-slate-300 w-screen">
+            <div className="flex">
+                <Sidebar />
+                <div className="flex-1 mt-2 mr-2 bg-white rounded-lg">
+                    {children}
+                </div>
+            </div>
+        </div>
     )
 }

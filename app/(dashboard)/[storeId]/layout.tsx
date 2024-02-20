@@ -31,7 +31,7 @@ export default async function DashboardLayout({
         <div className="bg-slate-300 w-screen">
             <div className="flex">
                 <Sidebar />
-                <div className="flex-1 mt-2 mr-2 bg-white rounded-lg">
+                <div className="flex-1 bg-white rounded-lg">
                     {children}
                 </div>
             </div>

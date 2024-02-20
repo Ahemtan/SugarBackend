@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react";
-import Image from "next/image";
 import { useParams, usePathname } from "next/navigation";
 import Link from "next/link"
 
@@ -67,14 +66,14 @@ export const Sidebar = () => {
 
     return ( 
         <>
-        <div className={`${open? "w-72" : "w-20 "} duration-300 pl-2 pr-0 mt-2 h-screen bg-slate-300 relative`}>
+        <div className={`${open? "w-72" : "w-20 "} duration-300 pl-2 pr-0 h-screen bg-slate-950 relative`}>
 
             <div onClick={() => setOpen(!open)} className={`absolute cursor-pointer rounded-full -right-3 top-9 w-7 border-2 bg-white duration-300 ${!open && 'rotate-180'}`}>
                 <ArrowLeft />
             </div>
 
             <div className="flex gap-x-4 items-center mr-2">
-                <Image alt="logo" width="50" height="50" src="https://seeklogo.com/images/T/threads-logo-E9BA734BF6-seeklogo.com.png?v=638242470460000000" />
+                <p className="text-2xl text-slate-100">D</p>
                 <h1 className={`text-white origin-left font-medium text-xl duration-300 ${!open && "scale-0"}`}>Dashboard</h1>
             </div>
 

@@ -40,6 +40,8 @@ export const StoreModal = () => {
 
             window.location.assign(`/${response.data.id}`)
         } catch (error) {
+            console.log(error);
+            
             toast.error("Something Went Worng!")
         } finally {
             setLoading(false)

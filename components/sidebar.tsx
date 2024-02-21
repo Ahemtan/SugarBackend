@@ -8,7 +8,7 @@ import { LayoutDashboard, FileImage, BarChartHorizontal, Scaling, Brush, Shirt, 
 import { cn } from "@/lib/utils";
 
 export const Sidebar = () => {
-    const [open, setOpen] = useState(true) 
+    const [open, setOpen] = useState(false) 
 
     const pathname = usePathname();
     const params = useParams();

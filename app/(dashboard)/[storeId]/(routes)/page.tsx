@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar"
 import prismadb from "@/lib/prismadb"
 
 interface DashboardPageProps {
@@ -11,9 +12,11 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({ params }) => {
     }
   })
   return (
-    <div>
-        Active Store: {store?.name}
-    </div>
+    <>      
+      <div>
+          Active Store: {store?.name}
+      </div>
+    </>
   )
 }
 

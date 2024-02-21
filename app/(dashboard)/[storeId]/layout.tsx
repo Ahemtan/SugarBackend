@@ -1,7 +1,9 @@
+import Navbar from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar";
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 export default async function DashboardLayout({
     children,
@@ -10,6 +12,7 @@ export default async function DashboardLayout({
     children: React.ReactNode;
     params: { storeId : string }
 }) {
+
     const { userId } = auth()
 
     if(!userId) {
@@ -31,7 +34,8 @@ export default async function DashboardLayout({
         <div className="bg-slate-300 w-screen">
             <div className="flex">
                 <Sidebar />
-                <div className="flex-1 bg-white rounded-lg">
+                <div className="flex-1 bg-white">
+                    <Navbar/>
                     {children}
                 </div>
             </div>

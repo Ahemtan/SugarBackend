@@ -1,4 +1,3 @@
-import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import prismadb from "@/lib/prismadb";
@@ -8,7 +7,7 @@ export default async function setupLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const {userId} = auth()
+    const userId = 'b3d673d5-318f-40ac-8e74-2007996103ad'
 
     if(!userId) {
         redirect('/sign-in');

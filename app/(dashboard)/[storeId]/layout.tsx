@@ -1,7 +1,6 @@
 import Navbar from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar";
 import prismadb from "@/lib/prismadb";
-import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
@@ -13,7 +12,7 @@ export default async function DashboardLayout({
     params: { storeId : string }
 }) {
 
-    const { userId } = auth()
+    const userId = 'b3d673d5-318f-40ac-8e74-2007996103ad'
 
     if(!userId) {
         redirect('/sign-in')

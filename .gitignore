@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# This gitignore file is used only internally for this repository,
+# you should not use this in your own projects. Instead, navigate into
+# an example folder and use the folder as the project root (it also contains a
+# projects-specific .gitignore).
+/**/migrations/
+/**/migrations/

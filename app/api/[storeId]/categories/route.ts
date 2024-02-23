@@ -1,14 +1,15 @@
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs";
 
 import prismadb from "@/lib/prismadb";
+import { getUserData } from "@/lib/auth";
 
 export async function POST(
   req: Request,
   { params }: { params: { storeId: string } }
 ) {
-  try {
-    const { userId } = auth();
+  try { 
+    const userData = getUserData();
+    const userId = userData?.userId
     const body = await req.json();
 
     const { name, billboardId } = body;

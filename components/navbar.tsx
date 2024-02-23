@@ -2,11 +2,14 @@ import { MainNav } from "@/components/main-nav";
 import StoreSwitcher from "@/components/store-switcher";
 import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
+import { getUserData } from "@/lib/auth";
 
 const Navbar = async () => {
 
-    const userId = 'b3d673d5-318f-40ac-8e74-2007996103ad'
+    
+    const userData = getUserData()
 
+    const userId = userData?.userId
     const stores = await prismadb.store.findMany({
         where: {
             userId,
@@ -17,7 +20,7 @@ const Navbar = async () => {
             <div className="h-16 px-4 flex justify-between items-center">
                 <StoreSwitcher items={stores} />
                 <div className="flex items-center space-x-4">
-                    <h1>HELLO</h1>
+                    <h1>{userData?.name}</h1>
                 </div>
             </div>
         </div>

@@ -1,16 +1,24 @@
 import { redirect } from "next/navigation";
 
 import prismadb from "@/lib/prismadb";
+import { getUserData } from "@/lib/auth";
 
 export default async function setupLayout({
     children
 }: {
     children: React.ReactNode;
-}) {
-    const userId = 'b3d673d5-318f-40ac-8e74-2007996103ad'
+}, ) {
+
+    const userData = getUserData()
+
+    let userId;
+
+    if(userData) {
+        userId = userData.userId
+    }
 
     if(!userId) {
-        redirect('/sign-in');
+        redirect('/login')
     }
 
     const store = await prismadb.store.findFirst({

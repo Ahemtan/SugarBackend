@@ -1,12 +1,16 @@
 import { NextResponse } from "next/server";
 
 import prismadb from "@/lib/prismadb";
+import { getUserData } from "@/lib/auth";
 
 export async function GET(
   req: Request,
   { params }: { params: { categoryId: string } }
 ) {
   try {
+    const userData = getUserData();
+    const userId = userData?.userId
+
     if (!params.categoryId) {
       return new NextResponse("Category id is required", { status: 400 });
     }
@@ -32,7 +36,8 @@ export async function DELETE(
   { params }: { params: { categoryId: string, storeId: string } }
 ) {
   try {
-    const { userId } = auth();
+    const userData = getUserData();
+    const userId = userData?.userId
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
@@ -72,7 +77,8 @@ export async function PATCH(
   { params }: { params: { categoryId: string, storeId: string } }
 ) {
   try {   
-    const { userId } = auth();
+    const userData = getUserData();
+    const userId = userData?.userId
 
     const body = await req.json();
     

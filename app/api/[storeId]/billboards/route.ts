@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-
+import { getUserData } from "@/lib/auth";
 import prismadb from "@/lib/prismadb";
 
 export async function POST(
@@ -7,7 +7,8 @@ export async function POST(
   { params }: { params: { storeId: string } }
 ) {
   try {
-    const { userId } = auth();
+    const userData = getUserData();
+    const userId = userData?.userId
     const body = await req.json();
 
     const { label, imageUrl } = body;

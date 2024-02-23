@@ -1,8 +1,8 @@
 import Navbar from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar";
+import { getUserData } from "@/lib/auth";
 import prismadb from "@/lib/prismadb";
 import { redirect } from "next/navigation";
-import { useEffect } from "react";
 
 export default async function DashboardLayout({
     children,
@@ -10,12 +10,14 @@ export default async function DashboardLayout({
 }: {
     children: React.ReactNode;
     params: { storeId : string }
-}) {
+}) {    
 
-    const userId = '55412fd4-47d4-46b3-bb60-56e590f9c757'
+    const userData = getUserData()
+
+    let userId = userData?.userId
 
     if(!userId) {
-        redirect('/sign-in')
+        redirect('/login')
     }
 
     const store = await prismadb.store.findFirst({

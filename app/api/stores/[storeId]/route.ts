@@ -1,5 +1,5 @@
+import { getUserData } from "@/lib/auth";
 import prismadb from "@/lib/prismadb";
-import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server"
 
 export async function PATCH (
@@ -7,14 +7,17 @@ export async function PATCH (
     { params } : {params: { storeId: string }}
 ) {
     try {
-        const { userId } = auth();
+        const userData = getUserData()
+
+        let userId = userData?.userId
+
+        if(!userId) {
+            return NextResponse.json({success: false, message: "Unauthorized"}, {status: 401})
+        }
+
         const body = await req.json();
 
         const {name} = body;
-
-        if(!userId) {
-            return new NextResponse("Unauthorized", {status: 401})
-        }
 
         if(!name) {
             return new NextResponse("Name is require!", { status: 400})
@@ -47,10 +50,12 @@ export async function DELETE (
     { params } : {params: { storeId: string }}
 ) {
     try {
-        const { userId } = auth();
+        const userData = getUserData()
+
+        let userId = userData?.userId
 
         if(!userId) {
-            return new NextResponse("Unauthorized", {status: 401})
+            return NextResponse.json({success: false, message: "Unauthorized"}, {status: 401})
         }
 
         if(!params.storeId) {

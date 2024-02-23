@@ -11,8 +11,14 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { CardWrapper } from "./card-wrapper";
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import toast from 'react-hot-toast';
+import axios, { AxiosError } from 'axios';
+import { useRouter } from "next/navigation"
 
 export const LoginForm = () => {
+
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -20,11 +26,26 @@ export const LoginForm = () => {
       password: "",
     },
   });
+
+  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+    try {
+      await axios.post('/api/auth/login', values)
+      toast.success("login successful");
+      router.push('/');
+    } catch (error: any) {
+      if(error.response) {
+       return toast.error(error.response.statusText);
+      }
+      toast.error("Something went wrong!");
+      console.log(error);
+    }
+    
+  }
   return (
     <CardWrapper headerLabel="Glad to see you again! 😄">
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(() => {})} className='space-y-6'>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
             <div className='space-y-4'>
               <FormField 
                 control={form.control}

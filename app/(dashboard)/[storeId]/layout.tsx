@@ -12,7 +12,7 @@ export default async function DashboardLayout({
     params: { storeId : string }
 }) {
 
-    const userId = 'b3d673d5-318f-40ac-8e74-2007996103ad'
+    const userId = '55412fd4-47d4-46b3-bb60-56e590f9c757'
 
     if(!userId) {
         redirect('/sign-in')

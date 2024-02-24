@@ -3,43 +3,41 @@ import { Sidebar } from "@/components/sidebar";
 import { getUserData } from "@/lib/auth";
 import prismadb from "@/lib/prismadb";
 import { redirect } from "next/navigation";
-
 export default async function DashboardLayout({
-    children,
-    params
+  children,
+  params,
 }: {
-    children: React.ReactNode;
-    params: { storeId : string }
-}) {    
+  children: React.ReactNode;
+  params: { storeId: string };
+}) {
+  const userData = getUserData();
 
-    const userData = getUserData()
+  let userId = userData?.userId;
 
-    let userId = userData?.userId
+  if (!userId) {
+    redirect("/login");
+  }
 
-    if(!userId) {
-        redirect('/login')
-    }
+  const store = await prismadb.store.findFirst({
+    where: {
+      id: params.storeId,
+      userId,
+    },
+  });
 
-    const store = await prismadb.store.findFirst({
-        where: {
-            id: params.storeId,
-            userId
-        }
-    })
+  if (!store) {
+    redirect("/");
+  }
 
-    if(!store) {
-        redirect('/');
-    }
-
-    return (
-        <div className="bg-slate-300 w-screen">
-            <div className="flex">
-                <Sidebar />
-                <div className="flex-1 bg-white">
-                    <Navbar/>
-                    {children}
-                </div>
-            </div>
+  return (
+    <div className="bg-slate-300 w-screen">
+      <div className="flex">
+        <Sidebar />
+        <div className="flex-1 bg-white">
+          <Navbar />
+          {children}
         </div>
-    )
+      </div>
+    </div>
+  );
 }

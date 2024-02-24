@@ -4,6 +4,7 @@ import { ModalProvider } from '@/providers/modal-provider'
 import { ToasterProvider } from '@/providers/toast-provider'
 
 import './globals.css'
+import Loader from '@/components/loader'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
       <html lang="en">
         <body className={inter.className}>
+          <Loader />
           <ToasterProvider />
           <ModalProvider />
           {children}

@@ -9,20 +9,20 @@ import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { DataTable } from "@/components/ui/data-tables";
 
-import { SizesColoum, columns } from "./colums";
+import { ColorColoum, columns } from "./colums";
 
-interface SizesClientProps {
-    data: SizesColoum[]
+interface ColorClientProps {
+    data: ColorColoum[]
 }
 
-export const SizesClient: React.FC<SizesClientProps> = ({ data }) => {
+export const SizesClient: React.FC<ColorClientProps> = ({ data }) => {
     const router = useRouter();
     const params = useParams();
     return (
         <>
             <div className="flex items-center justify-between">
-                <Heading title={`Sizes (${data.length})`} description="Manage Sizes for your store" />
-                <Button onClick={() => router.push(`/${params.storeId}/sizes/new`)}>
+                <Heading title={`Colors (${data.length})`} description="Manage Colors for your store" />
+                <Button onClick={() => router.push(`/${params.storeId}/colors/new`)}>
                     <Plus className="mr-2 h-4 w-4" />
                     Add new
                 </Button>

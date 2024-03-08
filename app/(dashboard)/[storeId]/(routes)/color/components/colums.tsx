@@ -6,14 +6,14 @@ import { CellAction } from "./cell-action"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type SizesColoum = {
+export type ColorColoum = {
   id: string
   name: string
   value: string
   createdAt: string;
 }
 
-export const columns: ColumnDef<SizesColoum>[] = [
+export const columns: ColumnDef<ColorColoum>[] = [
   {
     accessorKey: "name",
     header: "Name",
@@ -21,6 +21,12 @@ export const columns: ColumnDef<SizesColoum>[] = [
   {
     accessorKey: "value",
     header: "Value",
+    cell: ({ row }) => (
+      <div className="flex items-center gap-x-2">
+        {row.original.name}
+        <div className="h-6 w-6 rounded-full border" style={{ backgroundColor: row.original.value}}></div>
+      </div>
+    )
   },
   {
     accessorKey: "createdAt",

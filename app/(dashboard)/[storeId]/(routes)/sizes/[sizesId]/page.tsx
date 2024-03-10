@@ -7,7 +7,7 @@ const BillboardPage = async ({
     params: { sizesId: string }
 }) => {
 
-    const size = await prismadb.sizes.findUnique({
+    const size = await prismadb.size.findUnique({
         where: {
             id: params.sizesId
         }

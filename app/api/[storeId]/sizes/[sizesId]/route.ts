@@ -12,7 +12,7 @@ export async function GET(
       return new NextResponse("Size id is required", { status: 400 });
     }
 
-    const size = await prismadb.sizes.findUnique({
+    const size = await prismadb.size.findUnique({
       where: {
         id: params.sizesId
       }
@@ -52,7 +52,7 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 405 });
     }
 
-    const size = await prismadb.sizes.delete({
+    const size = await prismadb.size.delete({
       where: {
         id: params.sizesId,
       }
@@ -105,7 +105,7 @@ export async function PATCH(
       return new NextResponse("Unauthorized", { status: 405 });
     }
 
-    const size = await prismadb.sizes.update({
+    const size = await prismadb.size.update({
       where: {
         id: params.sizesId,
       },

@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { Trash } from "lucide-react"
-import { Sizes } from "@prisma/client"
+import { Size } from "@prisma/client"
 import { useParams, useRouter } from "next/navigation"
 
 import { Input } from "@/components/ui/input"
@@ -33,7 +33,7 @@ const formSchema = z.object({
 type SizeFormValues = z.infer<typeof formSchema>
 
 interface SizeFormProps {
-  initialData: Sizes | null;
+  initialData: Size | null;
 };
 
 export const SizeForm: React.FC<SizeFormProps> = ({

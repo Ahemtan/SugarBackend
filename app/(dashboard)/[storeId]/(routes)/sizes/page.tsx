@@ -6,7 +6,7 @@ import { SizesColoum } from "./components/colums";
 
 const SizesPage = async ({ params }: { params: { storeId: string } }) => {
 
-    const sizes = await prismadb.sizes.findMany({
+    const sizes = await prismadb.size.findMany({
         where: {
           storeId: params.storeId
         }, 

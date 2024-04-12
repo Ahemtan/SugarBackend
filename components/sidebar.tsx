@@ -76,8 +76,8 @@ export const Sidebar = () => {
                 <p className="text-2xl text-slate-100">D</p>
                 <h1 className={`text-white origin-left font-medium text-xl duration-300 ${!open && "scale-0"}`}>Dashboard</h1>
             </div>
-
-            <ul className="pt-6">
+            
+            <ul className="pt-6 flex flex-col justify-center w-full">
                 {
                     routes.map((menu, index) => (
                         <li key={index} className={cn('text-gray-50 text-sm flex items-center gap-x-4 p-2 hover:bg-slate-200}', menu.active ? 'bg-white text-black rounded-l-lg' : '')}>

@@ -42,5 +42,28 @@ This project is a full-featured Content Management System (CMS) built using Next
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/ecommerce-cms-nextjs.git
+   git clone https://github.com/Ahemtan/SugarBackend.git
    cd ecommerce-cms-nextjs
+   ```
+
+   Install dependencies:
+   
+   ```bash
+      npm install
+   ```
+   
+   Run Web App:
+
+
+   ```bash
+      npm run dev
+
+## TODOS
+   - [ ] CRM System
+      - [x] Basic Role Management
+      - [ ] Email Marketing System
+      
+   - [ ] Order System
+      - [x] Basic OrderManagement
+      - [ ] Implement khalti
+      - [ ] Complete order system
